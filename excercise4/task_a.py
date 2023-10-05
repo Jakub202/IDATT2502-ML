@@ -54,9 +54,11 @@ x_train = torch.tensor([
     [char_encodings[6]],  # 'r'
     [char_encodings[3]],  # 'l'
     [char_encodings[7]],  # 'd'
+    [char_encodings[0]],  # ' '
 ])  # ' hello world '
 
 y_train = torch.tensor([
+    char_encodings[0],
     char_encodings[1],  # 'h'
     char_encodings[2],  # 'e'
     char_encodings[3],  # 'l'
@@ -76,7 +78,7 @@ y_train = torch.tensor([
 model = LongShortTermMemoryModel(encoding_size)
 
 optimizer = torch.optim.RMSprop(model.parameters(), 0.001)
-for epoch in range(500):
+for epoch in range(1000):
     model.reset()
     model.loss(x_train, y_train).backward()
     optimizer.step()

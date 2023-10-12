@@ -4,3 +4,4 @@
 __pycache__/
 *.py[cod]
 *.ipynb_checkpoints/
+/excercise7/05.11-expectation-maximization.png

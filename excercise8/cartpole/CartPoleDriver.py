@@ -53,6 +53,9 @@ env1.close()
 # get the sum of rewards
 np.sum(obtainedRewardsOptimal)
 
+#wait for user to press enter
+input("Press Enter to continue...")
+
 # now simulate a random strategy
 (obtainedRewardsRandom,env2)=Q1.simulateRandomStrategy()
 plt.hist(obtainedRewardsRandom)
@@ -61,5 +64,7 @@ plt.ylabel('Percentage')
 plt.savefig('histogram.png')
 plt.show()
 
-# run this several times and compare with a random learning strategy
+#wait for user to press enter
+input("Press Enter to continue...")
+
 (obtainedRewardsOptimal,env1)=Q1.simulateLearnedStrategy()

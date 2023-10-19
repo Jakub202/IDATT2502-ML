@@ -1,4 +1,7 @@
+import time
+
 import numpy as np
+from tqdm import tqdm
 
 class CartPoleFunctions:
 
@@ -69,7 +72,7 @@ class CartPoleFunctions:
     def simulateEpisodes(self):
         import numpy as np
         # here we loop through the episodes
-        for indexEpisode in range(self.numberEpisodes):
+        for indexEpisode in tqdm(range(self.numberEpisodes)):
 
             # list that stores rewards per episode - this is necessary for keeping track of convergence
             rewardsEpisode = []
@@ -78,7 +81,7 @@ class CartPoleFunctions:
             (stateS, _) = self.env.reset()
             stateS = list(stateS)
 
-            print("Simulating episode {}".format(indexEpisode))
+            #print("Simulating episode {}".format(indexEpisode))
 
             # here we step from one state to another
             # this will loop until a terminal state is reached
@@ -117,9 +120,9 @@ class CartPoleFunctions:
 
                 # set the current state to the next state
                 stateS = stateSprime
-
-            print("Sum of rewards {}".format(np.sum(rewardsEpisode)))
-            self.sumRewardsEpisode.append(np.sum(rewardsEpisode))
+            sum = np.sum(rewardsEpisode)
+            #print("Sum of rewards {}".format(sum))
+            self.sumRewardsEpisode.append(sum)
 
     def simulateLearnedStrategy(self):
         import gym
@@ -148,7 +151,7 @@ class CartPoleFunctions:
         import gym
         import time
         import numpy as np
-        env2 = gym.make('CartPole-v1')
+        env2 = gym.make('CartPole-v1', render_mode='human')
         (currentState, _) = env2.reset()
         env2.render()
         # number of simulation episodes
@@ -166,15 +169,9 @@ class CartPoleFunctions:
                 random_action = env2.action_space.sample()
                 observation, reward, terminated, truncated, info = env2.step(random_action)
                 rewardsSingleEpisode.append(reward)
+                time.sleep(0.05)
                 if (terminated):
+                    time.sleep(1)
                     break
             sumRewardsEpisodes.append(np.sum(rewardsSingleEpisode))
         return sumRewardsEpisodes, env2
-
-
-
-
-
-
-
-

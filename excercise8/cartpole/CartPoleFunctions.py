@@ -108,9 +108,6 @@ class CartPoleFunctions:
                 QmaxPrime = np.max(self.Qmatrix[stateSprimeIndex])
 
                 if not terminalState:
-                    # stateS+(actionA,) - we use this notation to append the tuples
-                    # for example, for stateS=(0,0,0,1) and actionA=(1,0)
-                    # we have stateS+(actionA,)=(0,0,0,1,0)
                     error = reward + self.gamma * QmaxPrime - self.Qmatrix[stateSIndex + (actionA,)]
                     self.Qmatrix[stateSIndex + (actionA,)] = self.Qmatrix[stateSIndex + (actionA,)] + self.alpha * error
                 else:
